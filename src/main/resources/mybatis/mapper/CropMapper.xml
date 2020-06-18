@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zpy.township.mapper.CropMapper">
+
+    <select id="listAll" resultType="com.zpy.township.basic.Crop">
+		select * from crop
+	</select>
+
+    <select id="listByStatus" resultType="com.zpy.township.basic.Crop">
+		select * from crop where status = #{status}
+	</select>
+
+    <select id="getById" resultType="com.zpy.township.basic.Crop">
+		select * from crop where id = #{id}
+	</select>
+
+    <insert id="insert">
+		insert into crop (crop_name,growth_period,cost_price,selling_price,grow_time,ripe_time,status) values(#{cropName},#{growthPeriod},#{costPrice},#{sellingPrice},#{growTime},#{ripeTime},#{status})
+	</insert>
+
+    <update id="update">
+        update crop
+        <set>
+            <if test="cropName != null">
+                crop_name = #{cropName},
+            </if>
+            <if test="growthPeriod != null">
+                growth_period = #{growthPeriod},
+            </if>
+            <if test="costPrice != null">
+                cost_price = #{costPrice},
+            </if>
+            <if test="sellingPrice != null">
+                selling_price = #{sellingPrice},
+            </if>
+            <if test="growTime != null">
+                grow_time = #{growTime},
+            </if>
+            <if test="ripeTime != null">
+                ripe_time = #{ripeTime},
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>
